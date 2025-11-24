@@ -1,0 +1,17 @@
+Zookeeper's Challenge Design Notes
+
+Overview
+This small program reads animal details from `arrivingAnimals.txt` and name lists from `animalNames.txt`. It puts the animals into four simple classes and then writes a summary to `zooPopulation.txt`.
+
+Key Ideas
+- **Classes:** One base `Animal` class holds the shared information. Four tiny subclasses (`Hyena`, `Lion`, `Tiger`, and `Bear`) only change the habitat heading that appears in the report.
+- **Data Structures:**
+  - vector<Animal*>` keeps every created animal in the order we read them.
+  - Three `map` objects track the available names, the next name position for each species, and the running counters used to build IDs.
+- **File Handling:** The program opens both text files with `ifstream` and checks for failure. A few plain helper functions trim spaces, split comma-separated phrases, and lowercase words when needed.
+
+Identifiers and Birthdays
+`buildBirthDate` subtracts the animal's age from the arrival year (2025) and combines it with a middle-of-the-season month/day choice. `buildId` creates values such as `Hy01` and `Li04` by joining the first two letters of the species with a number.
+
+Output
+`writeReport` groups animals by habitat title, prints one line per animal, shows the species count after each habitat, and ends the file with the total number of animals in the zoo.
